@@ -58,10 +58,10 @@
             
             river = editor.getValue();
             // remove string null values
-            river = Object.keys(river).map (function (k){
+            Object.keys(river).forEach (function (k){
                 if (river[k] == "null")
                     river[k] = null;
-                return river[k]
+                
             })
             river = JSON.stringify (river)
 
