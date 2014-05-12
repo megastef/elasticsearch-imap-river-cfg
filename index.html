@@ -28,6 +28,7 @@
     var element = document.getElementById('editor_holder');
     JSONEditor.defaults.options.iconlib = "bootstrap3";
     var url = '';
+    var river = null;
     // Set an option during instantiation
     var editor = new JSONEditor(element, {
         theme: 'bootstrap3',
@@ -53,7 +54,9 @@
             var user = editor.getEditor( 'root.user').getValue();
             var indexName = user.replace (/\.|\@/g,'_').toLowerCase();
             editor.getEditor( 'root.mail_index_name').setValue(indexName);
-            url =  '//'+window.location.host + '/_river/' +  indexName + '/_meta'
+            url =  '//'+window.location.host + '/_river/' +  indexName + '/_meta';
+            river = editor.getValue();
+
         });
         $('#createImap').on ('click', function (e){
             $.ajax({
