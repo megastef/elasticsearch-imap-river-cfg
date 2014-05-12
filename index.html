@@ -55,7 +55,7 @@
             var indexName = user.replace (/\.|\@/g,'_').toLowerCase();
             editor.getEditor( 'root.mail_index_name').setValue(indexName);
             url =  '//'+window.location.host + '/_river/' +  indexName + '/_meta';
-            river = editor.getValue();
+            river = JSON.stringify (editor.getValue());
 
         });
         $('#createImap').on ('click', function (e){
