@@ -1,0 +1,164 @@
+{
+    "type":"object",
+    "title": "Imap River",
+    "required":false,
+    "properties":{
+        "mail.store.protocol": {
+            "type":"string",
+            "default": "imap",
+            "required":true,
+            "enum": ["imap","pop3"]
+        },
+
+        "user": {
+            "title" : "User name",
+            "type":"string",
+            "default": "",
+            "required":true
+        },
+        "password": {
+            "title" : "Password",
+            "type":"string",
+            "default": "",
+            "required":true,
+            "format" : "password"
+        },
+        "mail.imap.host": {
+            "type":"string",
+            "default": "imap.mydomain.com",
+            "required":false
+        },
+        "mail.imap.port": {
+            "type":"number",
+            "default": 993,
+            "required":false
+        },
+        "bulk_flush_interval": {
+            "type":"string",
+            "title":"Bulk Flash Interval" ,
+            "default": "5s",
+            "required":false,
+            "format": "hidden",
+            "style": "display:none"
+        },
+        "bulk_size": {
+            "type":"number",
+            "default": 100,
+            "format": "hidden",
+            "required":false
+        },
+        "folderpattern": {
+            "type":"string",
+            "default": null,
+            "title": "Folder pattern",
+            "format": "hidden",
+            "required":false
+        },
+        "index_settings": {
+            "type":"string",
+            "default": "null",
+            "format": "hidden",
+            "required":false
+        },
+        "interval": {
+            "type":"string",
+            "default": "60s",
+            "format": "hidden",
+            "required":false
+        },
+        "mail.debug": {
+            "type":"string",
+            "default": "false",
+            "format": "hidden",
+            "required":false
+        },
+        "mail.imap.connectionpoolsize": {
+            "type":"number",
+            "default": 3,
+            "format": "hidden",
+            "required":false
+        },
+
+
+        "mail.imap.ssl.enable": {
+            "title":"SSL Enabled",
+            "type":"boolean",
+            "default": true,
+            "format": "hidden",
+            "required":false
+        },
+        "mail.imap.timeout": {
+            "type":"number",
+            "default": 10000,
+            "format": "hidden",
+            "required":false
+        },
+
+        "mail_index_name": {
+            "type":"string",
+            "default": "userIndex",
+            "required":false,
+
+            "watch" : {
+                "usr": "user"
+            }
+        },
+        "mail_type_name": {
+            "type":"string",
+            "default": "mail",
+            "format": "hidden",
+            "required":false
+        },
+        "max_bulk_requests": {
+            "type":"number",
+            "default": 30,
+            "format": "hidden",
+            "required":false
+        },
+
+        "schedule": {
+            "type":"string",
+            "default": "null",
+            "format": "hidden",
+            "required":false
+        },
+        "threads": {
+            "type":"number",
+            "default": 5,
+            "format": "hidden",
+            "required":false
+        },
+        "type_mapping": {
+            "type":"string",
+            "default": "null",
+            "format": "hidden",
+            "required":false
+        },
+        "type": {
+            "type":"string",
+            "default": "imap",
+            "format": "hidden",
+            "required":true
+        },
+
+        "with_attachments": {
+            "type":"boolean",
+            "default": false,
+            "format": "hidden",
+            "required":false
+        },
+        "with_striptags_from_textcontent": {
+            "title": "Striptags",
+            "type": "boolean",
+            "default": "true",
+            "hide": "true",
+            "required":false
+        },
+        "with_text_content": {
+            "type":"boolean",
+            "default": true,
+            "hide": "true",
+            "required":true
+        }
+    }
+}

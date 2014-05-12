@@ -1,0 +1,72 @@
+<html>
+<head>
+
+    <link rel="stylesheet" href="js/bootstrap/dist/css/bootstrap.min.css" />
+    <script src="js/jquery/dist/jquery.min.js"></script>
+    <script src="js/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="js/jsoneditor.min.js"></script>
+
+    <!-- placeholders for the theme switcher -->
+    <link rel='stylesheet' id='theme_stylesheet'>
+    <link rel='stylesheet' id='icon_stylesheet'>
+</head>
+<body>
+<div class="col-md-12 container">
+    <h1 style="width:100%;">River configuration</h1>
+</div>
+<div class=""row">
+    <div class="col-md-3 container" id="createImap">
+        <button>Create new IMAP river</button>
+    </div>
+    <div class="col-md-8 offset-1 container">
+        <div id="editor_holder" ></div>
+    </div>
+</div>
+
+<script>
+
+    var element = document.getElementById('editor_holder');
+    JSONEditor.defaults.options.iconlib = "bootstrap3";
+    var url = '';
+    // Set an option during instantiation
+    var editor = new JSONEditor(element, {
+        theme: 'bootstrap3',
+        ajax: true,
+        schema: { "$ref": "./models/imap-river.json"}
+
+    });
+
+    editor.on('ready',function() {
+        // Now the api methods will be available
+        //var editor = new JSONEditor(element, options);
+        var props = Object.keys(editor.schema.properties);
+        //console.log (props)
+        props.forEach (function (prop) {
+
+                var e = editor.getEditor( 'root.' + prop);
+            console.log (prop + ' ' + e.hide)
+                if (/hidden/i.test ('' + e.format) || /with/i.test(prop))
+                    e.container.style.display='none';
+        } );
+
+        editor.on('change',function() {
+            var user = editor.getEditor( 'root.user').getValue();
+            var indexName = user.replace (/\.|\@/g,'_').toLowerCase();
+            editor.getEditor( 'root.mail_index_name').setValue(indexName);
+            url =  '//'+window.location.host + '/_river/' +  indexName + '/_meta'
+        });
+        $('#createImap').on ('click', function (e){
+            $.ajax({
+                type: "PUT",
+                url: url,
+                contentType: "application/json",
+                data: {"data": "mydata"}
+            });
+        })
+
+    });
+
+
+</script>
+</body>
+</html>
