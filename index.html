@@ -59,11 +59,13 @@
 
         });
         $('#createImap').on ('click', function (e){
+            console.log (river)
+            console.log (url)
             $.ajax({
                 type: "PUT",
                 url: url,
                 contentType: "application/json",
-                data: {"data": "mydata"}
+                data: river
             });
         })
 
