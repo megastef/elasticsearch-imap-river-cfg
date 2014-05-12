@@ -60,7 +60,7 @@
             // remove string null values
             Object.keys(river).forEach (function (k){
                 if (river[k] == "null")
-                    river[k] = null;
+                    delete river[k]
                 
             })
             river = JSON.stringify (river)
